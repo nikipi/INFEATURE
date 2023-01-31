@@ -52,16 +52,11 @@ from sklearn.model_selection import train_test_split
 # from witwidget.notebook.visualization import WitWidget, WitConfigBuilder
 
 
-from sklearn.decomposition import PCA
-from sklearn.svm import SVC
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.ensemble import RandomForestClassifier
-import plotly.express as px
-from sklearn.ensemble import RandomForestClassifier
+
 from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 import xgboost as xgb
-from xgboost.sklearn import XGBClassifier
+
 
 
 from sklearn.metrics import accuracy_score
