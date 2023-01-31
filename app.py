@@ -194,10 +194,7 @@ class Model:
 
         self.model = pickle.load(
             open(
-                "/Users/ypi/opt/anaconda3/python_scripts/XAI_ONLINE_DEMO/xai_discretion/decision_tree.pkl",
-                "rb",
-            )
-        )
+                "decision_tree.pkl","rb"))
 
     def test_model(self):
         if not self.model:
