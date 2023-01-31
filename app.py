@@ -279,14 +279,19 @@ class Model:
 
 
         fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h",text= "Feature Value")
+        
+        
+        
+        
 
         # fig=go.Figure(data=go.Bar(x=self.shapdf['Feature Importance'], y=self.shapdf['Feature'],orientation='h'))
 
         fig.update_layout(
-            yaxis={"categoryorder": "total ascending"}, hovermode="y", height=500
+            yaxis={"categoryorder": "total ascending"}, hovermode="y", height=500)
+        
+        fig.update_layout(height=500,width=300)
 
-        )
-
+                   
         fig.update_traces(marker_color=self.shapdf["Color"])
 
         self.selectedfeature = plotly_events(fig)
@@ -933,7 +938,7 @@ class Model:
 
                     fig1.update_layout(legend=dict(y=-0.3, orientation="h"))
 
-                    fig1.update_layout(height=400)
+                    fig1.update_layout(height=500)
 
                     st.plotly_chart(fig1, use_container_width=True,height =500)
 
