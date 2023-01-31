@@ -113,7 +113,6 @@ Your job is to make as accurate decisions as possible which means reject applica
 
 st.write("\n")
 
-@st.cache(allow_output_mutation=True)
 def load_process_data(filename):
     data = pd.read_csv(filename, engine="python", index_col=False)
     # remove first column
