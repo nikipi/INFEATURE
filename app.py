@@ -6,7 +6,6 @@ import streamlit as st
 from datetime import datetime
 import pandas as pd
 
-from streamlit_extras.let_it_rain import rain
 
 import plotly.express as px
 import plotly.graph_objects as gopip
