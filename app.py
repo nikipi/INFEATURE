@@ -933,9 +933,9 @@ class Model:
 
                     fig1.update_layout(legend=dict(y=-0.3, orientation="h"))
 
-                    fig1.update_layout(height=550)
+                    fig1.update_layout(height=400)
 
-                    st.plotly_chart(fig1, use_container_width=True)
+                    st.plotly_chart(fig1, use_container_width=True,height =500)
 
                     self.verbalexp(idnum)
 
