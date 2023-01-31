@@ -289,7 +289,7 @@ class Model:
         fig.update_layout(
             yaxis={"categoryorder": "total ascending"}, hovermode="y", height=500)
         
-        fig.update_layout(height=500,width=500)
+        fig.update_layout(height=500,width=600)
 
                    
         fig.update_traces(marker_color=self.shapdf["Color"])
