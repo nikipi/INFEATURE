@@ -21,8 +21,7 @@ import pickle
 import plotly.express as px
 from sklearn.tree import _tree
 import re
-import dice_ml
-from dice_ml.utils import helpers
+
 from sklearn.inspection import PartialDependenceDisplay
 from streamlit_echarts import st_echarts
 from streamlit_plotly_events import plotly_events
