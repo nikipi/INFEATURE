@@ -129,11 +129,7 @@ def load_process_data(filename):
 
     return data
 
-
-
-df = load_process_data("/Users/ypi/opt/anaconda3/python_scripts/XAI_ONLINE_DEMO/xai_discretion/heloc_dataset_use.csv")
-
-
+df = load_process_data('heloc_dataset_use.csv')
 
 def split_df(data):
 
