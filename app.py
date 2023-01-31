@@ -113,8 +113,7 @@ Your job is to make as accurate decisions as possible which means reject applica
 
 st.write("\n")
 
-
-@st.cache(suppress_st_warning=True) 
+@st.cache(allow_output_mutation=True)
 def load_process_data(filename):
     data = pd.read_csv(filename, engine="python", index_col=False)
     # remove first column
@@ -132,7 +131,7 @@ def load_process_data(filename):
 
 df = load_process_data('heloc_dataset_use.csv')
 
-@st.cache(suppress_st_warning=True) 
+ 
 def split_df(data):
 
     variable_names = list(data.columns[1:])
