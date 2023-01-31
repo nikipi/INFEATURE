@@ -11,3 +11,4 @@ pickleshare==0.7.5
 graphviz
 IPython
 streamlit_echarts
+streamlit_plotly_events 
