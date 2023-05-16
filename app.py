@@ -88,6 +88,8 @@ from typing import Union
 
 import pandas as pd
 import streamlit as st
+from warnings import filterwarnings
+filterwarnings(action='ignore', category=DeprecationWarning, message='`np.bool` is a deprecated alias')
 
 
 
