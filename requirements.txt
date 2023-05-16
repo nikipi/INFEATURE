@@ -12,3 +12,4 @@ graphviz
 IPython
 streamlit_echarts
 streamlit_plotly_events 
+warnings
