@@ -1,11 +1,11 @@
 xgboost==0.82 
-streamlit==0.86.0
+streamlit==1.22.0
 plotly 
 mlxtend 
 seaborn
 shap
-scikit-learn
-numpy==1.23.1
+scikit-learn==1.2.2
+numpy==1.24.3
 pandas 
 pickleshare==0.7.5
 graphviz
