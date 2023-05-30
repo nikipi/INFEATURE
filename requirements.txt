@@ -5,7 +5,7 @@ mlxtend
 seaborn
 shap
 scikit-learn==1.2.2
-numpy==1.24.3
+numpy==1.23.0
 pandas 
 pickleshare==0.7.5
 graphviz
