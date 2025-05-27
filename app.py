@@ -268,25 +268,7 @@ class Model:
     def featurebar(self, idnum):
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
-        # Create sign-based color category
-        self.shapdf["ColorCategory"] = np.where(self.shapdf["Feature Importance"] > 0, 'Positive', 'Negative')
-        
-        fig = px.bar(
-            self.shapdf,
-            x='Feature',
-            y='Feature Importance',  # signed values here
-            color='ColorCategory',
-            color_discrete_map={'Positive': 'red', 'Negative': 'blue'},
-            title=f"Feature Importance for Application ID {idnum}",
-        )
-        
-        # Adjust y-axis range to include all positive and negative bars with margin
-        min_val = self.shapdf["Feature Importance"].min()
-        max_val = self.shapdf["Feature Importance"].max()
-        fig.update_yaxes(range=[min_val * 1.1 if min_val < 0 else 0, max_val * 1.1])
-        
-        # Show value labels on bars, rounded to 4 decimals
-        fig.update_traces(text=self.shapdf["Feature Importance"].round(4), textposition='outside')
+        st.write(self.shapdf)
         
         
         self.selectedfeature =  st.plotly_chart(fig, use_container_width=True)
