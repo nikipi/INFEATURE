@@ -270,6 +270,7 @@ class Model:
 
         for i in self.makeitfeature:
             featurevalue = self.test[i].iloc[idnum]
+            st.write(featurevalue)
             self.featuredict[i] = featurevalue
 
         return self.featuredict
