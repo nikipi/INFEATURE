@@ -270,38 +270,10 @@ class Model:
     def featurebar(self, idnum):
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
-        self.shapdf['abs_importance'] = self.shapdf['Feature Importance'].abs()
+        st.write(self.shapdf)
+       
 
-        fig = px.bar(
-        self.shapdf,
-        x='Feature Importance',
-        y='Feature',
-        orientation='h',
-        color='Color',
-        color_discrete_map={'red': 'red', 'blue': 'blue'},
-        text='Feature Importance'
-    )
-    
-        # Reverse y-axis so highest importance on top
-        fig.update_yaxes(autorange="reversed")
         
-        # Show values inside bars
-        fig.update_traces(texttemplate='%{text:.4f}', textposition='auto')
-        
-        # Update layout for cleaner look
-        fig.update_layout(
-            xaxis_title="Feature Importance",
-            yaxis_title="Feature",
-            template='plotly_white',
-            height=400 + 20 * len(self.shapdf)
-        )
-        
-        # Use plotly_events for interactive bar clicks
-        self.selectedfeature = plotly_events(fig)
-        
-        
-    
-        self.selectedfeature = plotly_events(fig)
 
         st.write("The chart above shows for each feature of the selected application, whether it increases(red bars) or decreases(blue bars) applicants' chance of repaying, and by how much.")
         st.write("""
