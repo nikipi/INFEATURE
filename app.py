@@ -462,7 +462,7 @@ class Model:
                         }
                     plotly_colors = [colors_dict[c] for c in category_orders]
 
-                    st.write(self.train.groupby([self.select, "Model Performance"]).size())
+                   
 
                     fig1 = px.histogram(
                             self.train,
@@ -478,6 +478,7 @@ class Model:
                             },
                             color_discrete_sequence=plotly_colors,
                             barmode="stack",
+                            nbins=30,
                         )
                     
                     fig1.add_annotation(
