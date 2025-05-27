@@ -268,16 +268,18 @@ class Model:
     def featurebar(self, idnum):
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
-        st.write(self.shapdf)
+        
 
-        fig = px.bar(
-            self.shapdf,
-            x='Feature',
-            y='Feature Importance',
-            color='Color'  # Optional: adds color mapping if needed
+        fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h",text= "Feature Value")
+
+        # fig=go.Figure(data=go.Bar(x=self.shapdf['Feature Importance'], y=self.shapdf['Feature'],orientation='h'))
+
+        fig.update_layout(
+            yaxis={"categoryorder": "total ascending"}, hovermode="y", height=500
+
         )
-        
-        
+
+        fig.update_traces(marker_color=self.shapdf["Color"])
         self.selectedfeature =  st.plotly_chart(fig, use_container_width=True)
        
 
