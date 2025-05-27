@@ -462,7 +462,7 @@ class Model:
                         }
                     plotly_colors = [colors_dict[c] for c in category_orders]
 
-                    st.write(self.train.head())
+                    st.write(self.train.groupby([self.select, "Model Performance"]).size())
 
                     fig1 = px.histogram(
                             self.train,
