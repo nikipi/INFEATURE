@@ -586,7 +586,7 @@ class Model:
                     font=dict(size=15, color="#242526"),
                 )
 
-                 st.plotly_chart(fig3, use_container_width=True)
+                st.plotly_chart(fig3, use_container_width=True)
 
                 st.plotly_chart(fig3)
 
