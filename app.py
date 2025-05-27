@@ -262,18 +262,25 @@ class Model:
                 )
             )
 
-        st.write(self.makeitfeature)
-        st.write(self.shapdf)
-    
+
         return self.makeitfeature, self.shapdf
 
     def featurebar(self, idnum):
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
-        st.write(self.shapdf)
-       
-
         
+        fig = px.bar(
+            self.shapdf,
+            x='Feature',
+            y='Feature Importance',
+            color='Color',
+            color_discrete_map={'red': 'red', 'blue': 'blue'},
+            title=f"Feature Importance for Application ID {idnum}",
+            
+        )
+
+        self.selectedfeature =  st.plotly_chart(fig, use_container_width=True)
+       
 
         st.write("The chart above shows for each feature of the selected application, whether it increases(red bars) or decreases(blue bars) applicants' chance of repaying, and by how much.")
         st.write("""
