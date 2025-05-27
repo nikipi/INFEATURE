@@ -280,8 +280,13 @@ class Model:
             
         )
 
+        # Show full precision on y-axis tick labels (adjust decimals as needed)
+        fig.update_yaxes(tickformat='.10f')  # Shows up to 10 decimal places without rounding
+        
+        # Optional: set y-axis range with a little margin
         fig.update_yaxes(range=[self.shapdf["Feature Importance"].min() * 1.1,
-                       self.shapdf["Feature Importance"].max() * 1.1])
+                               self.shapdf["Feature Importance"].max() * 1.1])
+
 
         self.selectedfeature =  st.plotly_chart(fig, use_container_width=True)
        
