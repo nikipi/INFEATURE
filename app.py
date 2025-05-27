@@ -402,262 +402,6 @@ class Model:
 
         self.train["Model Performance"] = newcol
 
-    # def plotdisforimportantfeature(self, idnum):
-
-    #     #         color = ['red','blue','green','black','brown']
-
-    #     #         fig,ax = plt.subplots(len(self.makeitfeature),sharex=True,sharey=True,figsize=(10,10))
-
-    #     #         plt.suptitle('Model')
-    #     #         plt.xlabel('Feature')
-    #     #         plt.ylabel('Class')
-
-    #     #         for i in range(len(self.makeitfeature)):
-    #     #             X = self.X.loc[:,self.makeitfeature[i]]
-    #     #             Y = self.y
-    #     #             ax[i].scatter(X, Y,color= color[i],label=self.makeitfeature[i])
-    #     #             plt.xlim([max(X), min(X)])
-    #     #             ax[i].legend(loc=4, prop={'size': 8})
-    #     #             ax[i].set_title('Distribution for feature %s'% self.makeitfeature[i])
-
-    #     #         fig1 = px.histogram(df, x=feature, color="Diagnosis", marginal="rug")
-    #     #         plotly_chart(fig1,use_container_width=True)
-
-    #     featuredict = dict()
-
-    #     for i in self.makeitfeature:
-    #         featurevalue = self.test[i].iloc[idnum]
-    #         featuredict[i] = featurevalue
-
-    #     st.write(featuredict)
-
-    #     fig1 = px.histogram(self.train, x=list(featuredict)[0], color="RiskPerformance")
-    #     fig1.add_annotation(
-    #     text='Your datapoint is here',
-    #     showarrow=True,
-    #     arrowhead=1,
-    #     x=list(featuredict.values())[0],
-    #     y=0.2,
-    #     align="left",
-    #     xanchor="left",
-    #     font=dict(size=15, color="#242526"),
-    # )
-
-    #     fig1.update_traces(marker_line_width=2)
-
-    #     selected_points = plotly_events(fig1)
-
-    #     if selected_points:
-
-    #         xvalue=selected_points[0]['x']
-    #         # categoryvalue= selected_points[0]['curveNumber']
-
-    #         # def categoryname(value):
-    #         #     if value == 0:
-    #         #         name = 'Bad'
-    #         #     else:
-    #         #         name = 'Good'
-    #         #     return name
-
-    #         # labelname = categoryname(categoryvalue)
-
-    #         selectdf = self.train[(self.train[list(featuredict)[0]]==xvalue)]
-
-    #         agree = st.checkbox('Show Confuntion Matrix')
-
-    #         if agree:
-    #            self.showconfusion(selectdf.RiskPerformance, selectdf.Predict, 1)
-
-    #         # if categoryvalue==0:
-
-    #         fig2 = px.histogram(selectdf, x=list(featuredict)[1],color="RiskPerformance")
-
-    #         fig2.update_traces(xbins_size=1, selector=dict(type='histogram'))
-
-    #         fig2.update_traces(marker_line_width=2)
-
-    #         fig2.add_annotation(text='Your datapoint is here',
-    #                 showarrow=True,
-    #                 arrowhead=1,
-    #                 x=list(featuredict.values())[1],
-    #                 y=0.2,
-    #                 align="left",
-    #                 xanchor="left",
-    #                 font=dict(size=15, color="#242526"))
-
-    #         selected_points2 = plotly_events(fig2)
-
-    #         if selected_points2:
-
-    #             xvalue=int(selected_points2[0]['x'])
-
-    #             selectdf2 =  selectdf[(selectdf[list(featuredict)[1]]==xvalue)]
-
-    #             if selectdf2:
-
-    #                 fig3 = px.histogram(selectdf2, x=list(featuredict)[2],color="RiskPerformance")
-
-    #                 fig3.update_traces(marker_line_width=2)
-
-    #                 fig3.add_annotation(text='Your datapoint is here',
-    #                     showarrow=True,
-    #                     arrowhead=1,
-    #                     x=list(featuredict.values())[2],
-    #                     y=0.2,
-    #                     align="left",
-    #                     xanchor="left",
-    #                     font=dict(size=15, color="#242526"))
-
-    #                 st.plotly_chart(fig3)
-
-    #         # else:
-    #         #     fig2 = px.histogram(selectdf, x=list(featuredict)[1],color="RiskPerformance")
-
-    #         #     fig2.update_traces(marker_line_width=2)
-
-    #         #     fig2.update_traces(xbins_size=1, selector=dict(type='histogram'))
-
-    #         #     fig2.add_annotation(text='Your datapoint is here',
-    #         #         showarrow=True,
-    #         #         arrowhead=1,
-    #         #         x=list(featuredict.values())[1],
-    #         #         y=0.2,
-    #         #         align="left",
-    #         #         xanchor="left",
-    #         #         font=dict(size=15, color="#242526"))
-
-    #         #     fig2.update_traces(marker_color='red')
-
-    #         #     selected_points2 = plotly_events(fig2)
-
-    #         #     if selected_points2:
-    #         #             st.write(selected_points2)
-
-    #         #             xvalue=int(selected_points2[0]['x'])
-
-    #         #             selectdf2 =  selectdf[(selectdf[list(featuredict)[1]]==xvalue)]
-    #         #             st.write(selectdf2)
-
-    #         #             fig3 = px.histogram(selectdf2, x=list(featuredict)[2],color="RiskPerformance")
-
-    #         #             fig3.update_traces(marker_line_width=2)
-
-    #         #             fig3.add_annotation(text='Your datapoint is here',
-    #         #         showarrow=True,
-    #         #         arrowhead=1,
-    #         #         x=list(featuredict.values())[2],
-    #         #         y=0.2,
-    #         #         align="left",
-    #         #         xanchor="left",
-    #         #         font=dict(size=15, color="#242526"))
-
-    #         #             st.plotly_chart(fig3,use_container_width=True)
-
-    # def plotdisforimportantfeaturewithperf(self, idnum):
-
-    #     #         color = ['red','blue','green','black','brown']
-
-    #     #         fig,ax = plt.subplots(len(self.makeitfeature),sharex=True,sharey=True,figsize=(10,10))
-
-    #     #         plt.suptitle('Model')
-    #     #         plt.xlabel('Feature')
-    #     #         plt.ylabel('Class')
-
-    #     #         for i in range(len(self.makeitfeature)):
-    #     #             X = self.X.loc[:,self.makeitfeature[i]]
-    #     #             Y = self.y
-    #     #             ax[i].scatter(X, Y,color= color[i],label=self.makeitfeature[i])
-    #     #             plt.xlim([max(X), min(X)])
-    #     #             ax[i].legend(loc=4, prop={'size': 8})
-    #     #             ax[i].set_title('Distribution for feature %s'% self.makeitfeature[i])
-
-    #     #         fig1 = px.histogram(df, x=feature, color="Diagnosis", marginal="rug")
-    #     #         plotly_chart(fig1,use_container_width=True)
-
-    #         featuredict = dict()
-
-    #         for i in self.makeitfeature:
-    #             featurevalue = self.test[i].iloc[idnum]
-    #             featuredict[i] = featurevalue
-
-    #         st.write(featuredict)
-
-    #         fig1 = px.histogram(self.train, x=list(featuredict)[0], color="Model Performance",
-    #         category_orders={'Model Performance':['High Risk-Predicted Incorrectly',"High Risk-Predicted Correctly",
-    #         "Low Risk-Predicted Incorrectly",'Low Risk-Predicted Correctly']
-
-    #         })
-    #         fig1.add_annotation(
-    #         text='Your datapoint is here',
-    #         showarrow=True,
-    #         arrowhead=1,
-    #         x=list(featuredict.values())[0],
-    #         y=0.2,
-    #         align="left",
-    #         xanchor="left",
-    #         font=dict(size=15, color="#242526"),
-    #     )
-
-    #         fig1.update_traces(marker_line_width=2)
-
-    #         selected_points = plotly_events(fig1)
-
-    #         if selected_points:
-
-    #             xvalue=selected_points[0]['x']
-    #             # categoryvalue= selected_points[0]['curveNumber']
-
-    #             # def categoryname(value):
-    #             #     if value == 0:
-    #             #         name = 'Bad'
-    #             #     else:
-    #             #         name = 'Good'
-    #             #     return name
-
-    #             # labelname = categoryname(categoryvalue)
-
-    #             selectdf = self.train[(self.train[list(featuredict)[0]]==xvalue)]
-
-    #             # if categoryvalue==0:
-
-    #             fig2 = px.histogram(selectdf, x=list(featuredict)[1],color="Model Performance",
-    #             category_orders=dict(species=['setosa', 'versicolor', 'virginica']))
-
-    #             fig2.update_traces(xbins_size=1, selector=dict(type='histogram'))
-
-    #             fig2.update_traces(marker_line_width=2)
-
-    #             fig2.add_annotation(text='Your datapoint is here',
-    #                     showarrow=True,
-    #                     arrowhead=1,
-    #                     x=list(featuredict.values())[1],
-    #                     y=0.2,
-    #                     align="left",
-    #                     xanchor="left",
-    #                     font=dict(size=15, color="#242526"))
-
-    #             selected_points2 = plotly_events(fig2)
-
-    #             if selected_points2:
-
-    #                         xvalue=int(selected_points2[0]['x'])
-
-    #                         selectdf2 =  selectdf[(selectdf[list(featuredict)[1]]==xvalue)]
-
-    #                         fig3 = px.histogram(selectdf2, x=list(featuredict)[2],color="Model Performance")
-
-    #                         fig3.update_traces(marker_line_width=2)
-
-    #                         fig3.add_annotation(text='Your datapoint is here',
-    #                     showarrow=True,
-    #                     arrowhead=1,
-    #                     x=list(featuredict.values())[2],
-    #                     y=0.2,
-    #                     align="left",
-    #                     xanchor="left",
-    #                     font=dict(size=15, color="#242526"))
-
-    #                         st.plotly_chart(fig3)
 
     def verbalexp(self, idnum):
 
@@ -720,25 +464,6 @@ class Model:
 
     def plotdisforimportantfeaturewithperf2(self, idnum):
 
-        #         color = ['red','blue','green','black','brown']
-
-        #         fig,ax = plt.subplots(len(self.makeitfeature),sharex=True,sharey=True,figsize=(10,10))
-
-        #         plt.suptitle('Model')
-        #         plt.xlabel('Feature')
-        #         plt.ylabel('Class')
-
-        #         for i in range(len(self.makeitfeature)):
-        #             X = self.X.loc[:,self.makeitfeature[i]]
-        #             Y = self.y
-        #             ax[i].scatter(X, Y,color= color[i],label=self.makeitfeature[i])
-        #             plt.xlim([max(X), min(X)])
-        #             ax[i].legend(loc=4, prop={'size': 8})
-        #             ax[i].set_title('Distribution for feature %s'% self.makeitfeature[i])
-
-        #         fig1 = px.histogram(df, x=feature, color="Diagnosis", marginal="rug")
-        #         plotly_chart(fig1,use_container_width=True)
-
         category_orders = [
             "High Risk-Predicted Incorrectly",
             "High Risk-Predicted Correctly",
@@ -752,6 +477,7 @@ class Model:
             "Low Risk-Predicted Incorrectly": "rgb(143,151,121)",
             "Low Risk-Predicted Correctly": "rgb(79,121,66)",
         }
+        
         plotly_colors = [colors_dict[c] for c in category_orders]
 
         fig1 = px.histogram(
@@ -782,23 +508,13 @@ class Model:
 
         fig1.update_traces(marker_line_width=2)
 
+        st.plotly_chart(fig1, use_container_width=True)
+
         selected_points = plotly_events(fig1)
 
         self.verbalexp(idnum)
 
         if selected_points:
-
-            xvalue = selected_points[0]["x"]
-            # categoryvalue= selected_points[0]['curveNumber']
-
-            # def categoryname(value):
-            #     if value == 0:
-            #         name = 'Bad'
-            #     else:
-            #         name = 'Good'
-            #     return name
-
-            # labelname = categoryname(categoryvalue)
 
             selectdf = self.train[(self.train[list(self.featuredict)[0]] == xvalue)]
 
