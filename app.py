@@ -270,13 +270,16 @@ class Model:
     def featurebar(self, idnum):
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
+        fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h", text="Feature Value")
 
-        fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h",text= "Feature Value")
-        
+        # Explicitly set category order based on ascending Feature Importance
+        ordered_features = self.shapdf.sort_values(by="Feature Importance")["Feature"].tolist()
         fig.update_layout(
-            yaxis={"categoryorder": "total ascending"}, hovermode="y", height=500)
-        
-        fig.update_layout(height=500,width=650)
+            yaxis={"categoryorder": "array", "categoryarray": ordered_features},
+            hovermode="y",
+            height=500,
+            width=650
+        )
 
                    
         fig.update_traces(marker_color=self.shapdf["Color"])
