@@ -478,7 +478,7 @@ class Model:
                             text="Your datapoint is here",
                             showarrow=True,
                             arrowhead=1,
-                            x=list(self.featuredict.values())[0],
+                            x=self.shapdf.loc[self.shapdf['Feature']== self.select, 'Feature Value'].values[0],
                             y=0.2,
                             align="left",
                             xanchor="left",
