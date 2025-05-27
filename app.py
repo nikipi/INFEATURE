@@ -270,20 +270,22 @@ class Model:
     def featurebar(self, idnum):
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
+        self.shapdf['abs_importance'] = self.shapdf['Feature Importance'].abs()
+    
         fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h", text="Feature Value")
-
-        # Explicitly set category order based on ascending Feature Importance
-        ordered_features = self.shapdf.sort_values(by="Feature Importance")["Feature"].tolist()
+    
+        # Order by absolute importance descending (strongest first)
+        ordered_features = self.shapdf.sort_values(by='abs_importance', ascending=False)['Feature'].tolist()
+    
         fig.update_layout(
             yaxis={"categoryorder": "array", "categoryarray": ordered_features},
             hovermode="y",
             height=500,
             width=650
         )
-
-                   
+    
         fig.update_traces(marker_color=self.shapdf["Color"])
-
+    
         self.selectedfeature = plotly_events(fig)
 
         st.write("The chart above shows for each feature of the selected application, whether it increases(red bars) or decreases(blue bars) applicants' chance of repaying, and by how much.")
