@@ -266,12 +266,13 @@ class Model:
         return self.makeitfeature, self.shapdf
 
     def featurebar(self, idnum):
-        
-        self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
-        
+
+        self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"]>0, 'red', 'blue')
+
 
         fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h",text= "Feature Value")
 
+        # fig=go.Figure(data=go.Bar(x=self.shapdf['Feature Importance'], y=self.shapdf['Feature'],orientation='h'))
 
         fig.update_layout(
             yaxis={"categoryorder": "total ascending"}, hovermode="y", height=500
@@ -279,8 +280,9 @@ class Model:
         )
 
         fig.update_traces(marker_color=self.shapdf["Color"])
-        
-        self.selectedfeature =  st.plotly_chart(fig, use_container_width=True)
+
+        self.selectedfeature = plotly_events(fig)
+
 
         st.write("The chart above shows for each feature of the selected application, whether it increases(red bars) or decreases(blue bars) applicants' chance of repaying, and by how much.")
         st.write("""
