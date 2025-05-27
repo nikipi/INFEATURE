@@ -271,20 +271,32 @@ class Model:
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
         self.shapdf['abs_importance'] = self.shapdf['Feature Importance'].abs()
-    
-        fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h", text="Feature Value")
-    
-        # Order by absolute importance descending (strongest first)
-        ordered_features = self.shapdf.sort_values(by='abs_importance', ascending=False)['Feature'].tolist()
+
+        fig = go.Figure()
+
+        fig.add_trace(go.Bar(
+            x=self.shapdf['Feature Importance'],
+            y=self.shapdf['Feature'],
+            orientation='h',
+            marker_color=self.shapdf['Color'],
+            text=self.shapdf['Feature Importance'].round(4),
+            textposition='auto'
+        ))
     
         fig.update_layout(
-            yaxis={"categoryorder": "array", "categoryarray": ordered_features},
-            hovermode="y",
-            height=500,
-            width=650
+            xaxis_title="Feature Importance",
+            yaxis_title="Feature",
+            yaxis=dict(autorange="reversed"),  # to keep the first feature on top
+            bargap=0.4,
+            height=400 + 20 * len(self.shapdf),  # dynamic height based on number of features
+            template='plotly_white'
         )
     
-        fig.update_traces(marker_color=self.shapdf["Color"])
+        # Use plotly_events for capturing clicks on bars (interactive)
+        self.selectedfeature = plotly_events(fig)
+        
+       
+        
     
         self.selectedfeature = plotly_events(fig)
 
