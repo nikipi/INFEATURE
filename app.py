@@ -487,6 +487,8 @@ class Model:
                         }
                     plotly_colors = [colors_dict[c] for c in category_orders]
 
+                    st.write(self.train.head()
+
                     fig1 = px.histogram(
                             self.train,
                             x=self.select,
@@ -501,6 +503,17 @@ class Model:
                             },
                             color_discrete_sequence=plotly_colors,
                             barmode="stack",
+                        )
+                    
+                    fig1.add_annotation(
+                            text="Your datapoint is here",
+                            showarrow=True,
+                            arrowhead=1,
+                            x=list(self.featuredict.values())[0],
+                            y=0.2,
+                            align="left",
+                            xanchor="left",
+                            font=dict(size=15, color="#242526"),
                         )
                       
 
