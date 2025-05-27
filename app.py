@@ -462,160 +462,16 @@ class Model:
         st.write(predverb)
         st.write(expfeature + expacc)
 
-    def plotdisforimportantfeaturewithperf2(self, idnum):
-
-        category_orders = [
-            "High Risk-Predicted Incorrectly",
-            "High Risk-Predicted Correctly",
-            "Low Risk-Predicted Incorrectly",
-            "Low Risk-Predicted Correctly",
-        ]
-
-        colors_dict = {
-            "High Risk-Predicted Incorrectly": "rgb(161,40,48)",
-            "High Risk-Predicted Correctly": "rgb(240,17,0)",
-            "Low Risk-Predicted Incorrectly": "rgb(143,151,121)",
-            "Low Risk-Predicted Correctly": "rgb(79,121,66)",
-        }
-        
-        plotly_colors = [colors_dict[c] for c in category_orders]
-
-        fig1 = px.histogram(
-            self.train,
-            x=list(self.featuredict)[0],
-            color="Model Performance",
-            category_orders={
-                "Model Performance": [
-                    "High Risk-Predicted Incorrectly",
-                    "High Risk-Predicted Correctly",
-                    "Low Risk-Predicted Incorrectly",
-                    "Low Risk-Predicted Correctly",
-                ]
-            },
-            color_discrete_sequence=plotly_colors,
-        )
-
-        fig1.add_annotation(
-            text="Your datapoint is here",
-            showarrow=True,
-            arrowhead=1,
-            x=list(self.featuredict.values())[0],
-            y=0.2,
-            align="left",
-            xanchor="left",
-            font=dict(size=15, color="#242526"),
-        )
-
-        fig1.update_traces(marker_line_width=2)
-
-        st.plotly_chart(fig1, use_container_width=True)
-
-        selected_points = plotly_events(fig1)
-
-        self.verbalexp(idnum)
-
-        if selected_points:
-
-            selectdf = self.train[(self.train[list(self.featuredict)[0]] == xvalue)]
-
-            # if categoryvalue==0:
-
-            fig2 = px.histogram(
-                selectdf,
-                x=list(self.featuredict)[1],
-                color="Model Performance",
-                category_orders={
-                    "Model Performance": [
-                        "High Risk-Predicted Incorrectly",
-                        "High Risk-Predicted Correctly",
-                        "Low Risk-Predicted Incorrectly",
-                        "Low Risk-Predicted Correctly",
-                    ]
-                },
-            )
-
-            fig2.update_traces(xbins_size=1, selector=dict(type="histogram"))
-
-            fig2.update_traces(marker_line_width=2)
-
-            fig2.add_annotation(
-                text="Your datapoint is here",
-                showarrow=True,
-                arrowhead=1,
-                x=list(self.featuredict.values())[1],
-                y=0.2,
-                align="left",
-                xanchor="left",
-                font=dict(size=15, color="#242526"),
-            )
-
-            st.plotly_chart(fig2, use_container_width=True)
-
-            selected_points2 = plotly_events(fig2)
-
-            if selected_points2:
-
-                xvalue = int(selected_points2[0]["x"])
-
-                selectdf2 = selectdf[(selectdf[list(self.featuredict)[1]] == xvalue)]
-
-                fig3 = px.histogram(
-                    selectdf2,
-                    x=list(self.featuredict)[2],
-                    color="Model Performance",
-                    category_orders={
-                        "Model Performance": [
-                            "High Risk-Predicted Incorrectly",
-                            "High Risk-Predicted Correctly",
-                            "Low Risk-Predicted Incorrectly",
-                            "Low Risk-Predicted Correctly",
-                        ]
-                    },
-                )
-
-                fig3.update_traces(marker_line_width=2)
-
-                fig3.add_annotation(
-                    text="Your datapoint is here",
-                    showarrow=True,
-                    arrowhead=1,
-                    x=list(self.featuredict.values())[2],
-                    y=0.2,
-                    align="left",
-                    xanchor="left",
-                    font=dict(size=15, color="#242526"),
-                )
-
-                st.plotly_chart(fig3, use_container_width=True)
-
-                st.plotly_chart(fig3)
-
     def interactiveexp(self, idnum):
         col1, col2 = st.columns(2)
 
         with col1:
-            # selectmode = st.radio(
-            #     "You can choose to explore:",
-            #     [
-            #         "Feature Distribution(select one feature)",
-            #         "Feature Interaction(select two features)",
-            #     ],
-            #     key="Feature Distribution",
-            # )
-
             self.featurebar(idnum)
 
             if self.click:
 
                 with col2:
-                    # st.write(" ")
-                    # st.write(" ")
-                    # st.write(" ")
-                    # st.write(" ")
-                    # st.write(" ")
-                    # st.write(" ")
-
-    
+                  
                     category_orders = [
                             "High Risk-Predicted Incorrectly",
                             "High Risk-Predicted Correctly",
@@ -644,19 +500,9 @@ class Model:
                                 ]
                             },
                             color_discrete_sequence=plotly_colors,
+                            barmode="stack",
                         )
-                        # fig1.add_annotation(
-                        #     text='Your datapoint is here',
-                        #     showarrow=True,
-                        #     arrowhead=1,
-                        #     x=self.featuredict[self.select],
-                        #     y=0,
-                        #     align="center",
-                        #     xanchor="left",
-                        #     yanchor="bottom",
-                        #     ay=180,
-                        #     font=dict(size=15, color="#242526"),
-                        # )
+                      
 
                     fig1.update_traces(marker_line_width=2)
 
