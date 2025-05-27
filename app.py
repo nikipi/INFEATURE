@@ -269,6 +269,13 @@ class Model:
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
         st.write(self.shapdf)
+
+        fig = px.bar(
+            self.shapdf,
+            x='Feature',
+            y='Feature Importance',
+            color='Color'  # Optional: adds color mapping if needed
+        )
         
         
         self.selectedfeature =  st.plotly_chart(fig, use_container_width=True)
