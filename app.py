@@ -474,16 +474,18 @@ class Model:
                             nbins=30,
                         )
                     
+                    value = self.shapdf.loc[self.shapdf['Feature'] == self.select, 'Feature Value'].values[0]
+
                     fig1.add_annotation(
-                            text="Your datapoint is here",
-                            showarrow=True,
-                            arrowhead=1,
-                            x=self.shapdf.loc[self.shapdf['Feature']== self.select, 'Feature Value'].values[0],
-                            y=0.2,
-                            align="left",
-                            xanchor="left",
-                            font=dict(size=15, color="#242526"),
-                        )
+                        text=f"Your datapoint is here with value {value}",
+                        showarrow=True,
+                        arrowhead=1,
+                        x=value,
+                        y=0.2,
+                        align="left",
+                        xanchor="left",
+                        font=dict(size=15, color="#242526"),
+                    )
 
                     st.plotly_chart(fig1, use_container_width=True,height =500)
 
