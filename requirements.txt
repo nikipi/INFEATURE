@@ -1,6 +1,6 @@
 xgboost==0.82 
 streamlit==1.22.0
-plotly==5.24.1 
+plotly
 mlxtend 
 seaborn
 shap
