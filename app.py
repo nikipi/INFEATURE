@@ -280,6 +280,9 @@ class Model:
             
         )
 
+        fig.update_yaxes(range=[self.shapdf["Feature Importance"].min() * 1.1,
+                       self.shapdf["Feature Importance"].max() * 1.1])
+
         self.selectedfeature =  st.plotly_chart(fig, use_container_width=True)
        
 
