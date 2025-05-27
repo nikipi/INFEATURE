@@ -512,8 +512,7 @@ if __name__ == "__main__":
     # st.write("The reality is ", a.test.iloc[idnum]["RiskPerformance"])
 
     a.shapfeatureimportance(idnum)
-        # a.plotdisforimportantfeature(idnum)
-    a.importfeaturedict(idnum)
+
 
 
     st.write('**Why did our machine learning make this prediction?**')
