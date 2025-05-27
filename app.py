@@ -268,26 +268,27 @@ class Model:
     def featurebar(self, idnum):
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
-        st.write(self.shapdf)
+        # Create sign-based color category
+        self.shapdf["ColorCategory"] = np.where(self.shapdf["Feature Importance"] > 0, 'Positive', 'Negative')
         
         fig = px.bar(
             self.shapdf,
             x='Feature',
-            y='Feature Importance',
-            color='Color',
-            color_discrete_map={'red': 'red', 'blue': 'blue'},
+            y='Feature Importance',  # signed values here
+            color='ColorCategory',
+            color_discrete_map={'Positive': 'red', 'Negative': 'blue'},
             title=f"Feature Importance for Application ID {idnum}",
-            
         )
-
-        # Show full precision on y-axis tick labels (adjust decimals as needed)
-        fig.update_yaxes(tickformat='.10f')  # Shows up to 10 decimal places without rounding
         
-        # Optional: set y-axis range with a little margin
-        fig.update_yaxes(range=[self.shapdf["Feature Importance"].min() * 1.1,
-                               self.shapdf["Feature Importance"].max() * 1.1])
-
-
+        # Adjust y-axis range to include all positive and negative bars with margin
+        min_val = self.shapdf["Feature Importance"].min()
+        max_val = self.shapdf["Feature Importance"].max()
+        fig.update_yaxes(range=[min_val * 1.1 if min_val < 0 else 0, max_val * 1.1])
+        
+        # Show value labels on bars, rounded to 4 decimals
+        fig.update_traces(text=self.shapdf["Feature Importance"].round(4), textposition='outside')
+        
+        
         self.selectedfeature =  st.plotly_chart(fig, use_container_width=True)
        
 
