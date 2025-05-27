@@ -268,6 +268,7 @@ class Model:
     def featurebar(self, idnum):
         
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
+        st.write(self.shapdf)
         
         fig = px.bar(
             self.shapdf,
