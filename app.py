@@ -275,21 +275,11 @@ class Model:
         return self.featuredict
 
     def featurebar(self, idnum):
-
         
-
-
         self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"]>0, 'red', 'blue')
-
 
         fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h",text= "Feature Value")
         
-        
-        
-        
-
-        # fig=go.Figure(data=go.Bar(x=self.shapdf['Feature Importance'], y=self.shapdf['Feature'],orientation='h'))
-
         fig.update_layout(
             yaxis={"categoryorder": "total ascending"}, hovermode="y", height=500)
         
@@ -300,14 +290,10 @@ class Model:
 
         self.selectedfeature = plotly_events(fig)
 
-
         st.write("The chart above shows for each feature of the selected application, whether it increases(red bars) or decreases(blue bars) applicants' chance of repaying, and by how much.")
         st.write("""
         **Try to click a bar to see overall model performance.**
         """)
-
-
-
 
         self.click  = False
 
@@ -320,18 +306,7 @@ class Model:
 
         except IndexError:
             pass
-            
-            
-        
-
-            
-
-        # fig["data"][0]["marker"]["color"] = [
-        #     "red" if c == self.select else "blue" for c in fig["data"][0]["y"]
-        # ]
-
-        # st.write(fig["data"][0]["marker"]["color"])
-
+  
         
 
     def showconfusion(self, y_true, predict, class_name):
@@ -515,13 +490,6 @@ class Model:
                             xanchor="left",
                             font=dict(size=15, color="#242526"),
                         )
-                      
-
-                    fig1.update_traces(marker_line_width=2)
-
-                    fig1.update_layout(legend=dict(y=-0.3, orientation="h"))
-
-                    fig1.update_layout(height=500)
 
                     st.plotly_chart(fig1, use_container_width=True,height =500)
 
