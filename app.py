@@ -214,54 +214,56 @@ class Model:
 
     def shapfeatureimportance(self, idnum):
         self.explainer = shap.TreeExplainer(self.model)
-        data_for_prediction = X_test.iloc[idnum]
+        data_for_prediction = X_test.iloc[[idnum]]
         self.features = X_test.columns
-        # self.glo_shap = self.explainer.shap_values(self.X_test)[0]
-        # print(len(self.glo_shap))
-
-        if self.test.iloc[idnum]["Predict"] == 1:
-            self.shap_values = self.explainer.shap_values(data_for_prediction)
-
-            indexes = [
-                index for index, value in enumerate(self.shap_values[1]) if value > 0
-            ]
+    
+        # shap_values is a 3D numpy array: (1, num_features, num_classes)
+        self.shap_values = self.explainer.shap_values(data_for_prediction)
+    
+        predicted_class = self.test.iloc[idnum]["Predict"]
+    
+        if predicted_class == 1:
+            # Get SHAP values for class 1 for this single instance
+            feature_importances = self.shap_values[0, :, 1]
+    
+            # Features with positive importance for class 1
+            indexes = [i for i, val in enumerate(feature_importances) if val > 0]
+    
             self.shapdf = pd.DataFrame({
                 "Feature": self.features,
-                "Feature Importance": self.shap_values[1].tolist(),
-                "Feature Value": X_test.iloc[idnum]
-            } )
-
-            self.makeitfeature = [self.features[index] for index in indexes]
-            # st.write(
-            #     "The model predicts the person as bad based on", self.makeitfeature
-            # )
-
+                "Feature Importance": feature_importances,
+                "Feature Value": data_for_prediction.values[0]
+            })
+    
+            self.makeitfeature = [self.features[i] for i in indexes]
+    
         else:
-            self.shap_values = self.explainer.shap_values(data_for_prediction)
-            indexes = [
-                index for index, value in enumerate(self.shap_values[0]) if value > 0
-            ]
-            self.shapdf =pd.DataFrame({
+            # Get SHAP values for class 0
+            feature_importances = self.shap_values[0, :, 0]
+    
+            # Features with positive importance for class 0
+            indexes = [i for i, val in enumerate(feature_importances) if val > 0]
+    
+            self.shapdf = pd.DataFrame({
                 "Feature": self.features,
-                "Feature Importance": self.shap_values[1].tolist(),
-                "Feature Value": X_test.iloc[idnum]
-            } )
-
-            self.makeitfeature = [self.features[index] for index in indexes]
-            # st.write(
-            #     "The model predicts the person as good based on", self.makeitfeature
-            # )
-
+                "Feature Importance": feature_importances,
+                "Feature Value": data_for_prediction.values[0]
+            })
+    
+            self.makeitfeature = [self.features[i] for i in indexes]
+    
+            # Visualize force plot for class 1 (optional)
             shap.initjs()
             display(
                 shap.force_plot(
                     self.explainer.expected_value[1],
-                    self.shap_values[1],
+                    self.shap_values[0, :, 1],
                     data_for_prediction,
                 )
             )
-
+    
         return self.makeitfeature, self.shapdf
+
 
     def importfeaturedict(self, idnum):
         self.featuredict = dict()
