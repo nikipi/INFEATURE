@@ -261,6 +261,9 @@ class Model:
                     data_for_prediction,
                 )
             )
+
+        st.write(self.makeitfeature)
+        st.write(self.shapdf)
     
         return self.makeitfeature, self.shapdf
 
