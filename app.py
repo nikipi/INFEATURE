@@ -267,20 +267,9 @@ class Model:
     
         return self.makeitfeature, self.shapdf
 
-
-    def importfeaturedict(self, idnum):
-        self.featuredict = dict()
-
-        for i in self.makeitfeature:
-            featurevalue = self.test[i].iloc[idnum]
-            st.write(featurevalue)
-            self.featuredict[i] = featurevalue
-
-        return self.featuredict
-
     def featurebar(self, idnum):
         
-        self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"]>0, 'red', 'blue')
+        self.shapdf["Color"] = np.where(self.shapdf["Feature Importance"] > 0, 'red', 'blue')
 
         fig = px.bar(self.shapdf, x="Feature Importance", y="Feature", orientation="h",text= "Feature Value")
         
